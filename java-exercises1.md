@@ -3,7 +3,7 @@
 
 ## 課題1 奇数の和、偶数の和を求める
 
-1からコマンドライン引数に与えられた整数までの和を、偶数と奇数で分けてそれぞれ表示してください。<br>
+&ensp;1からコマンドライン引数に与えられた整数までの和を、偶数と奇数で分けてそれぞれ表示してください。<br>
 （ファイル名はCalcParity.javaとします）
 
 ※入力される数が負の場合や、文字の場合は考慮しなくて大丈夫です。
@@ -80,7 +80,7 @@ if(i % 2 == 0){
 
 ## 課題2 四則演算を実行する
 
-コマンドライン引数に入力される数と演算子を用いて、四則演算の結果を表示してください。
+&ensp;コマンドライン引数に入力される数と演算子を用いて、四則演算の結果を表示してください。
 （ファイル名はCalcInputs.javaとします）
 
 ※入力される数が負の場合や、文字の場合は考慮しなくて大丈夫ですが、<span style="color: red; ">演算子が正しくない場合</span>（+, -, ×, / 以外）には「演算子が正しくありません」という旨を表示してください。
@@ -140,7 +140,7 @@ if(c == d){
 <br>
 
 ## 課題3 九九の表を表示する
-かけ算の九九の表を表示するプログラムを作成してください。<br>
+&ensp;かけ算の九九の表を表示するプログラムを作成してください。<br>
 （ファイル名はTimesTable.javaとします）
 
 ### コンパイル
@@ -208,7 +208,14 @@ java DisplayDivisor 7
 <br>
 
 ## 課題5 実数を読み込む
+&ensp;
 実数（double型）を1つ読み込み、「<span style="color: red; ">18.5以上28.5未満でない</span>」数が入力されるまで、再び実数を読み込むプログラムを作成してください。<br>
+
+また、繰り返し処理には
+```
+while(true){}
+```
+を用いてください。<br>
 （ファイル名はEvaluateDoubleNum.javaとしています）
 
 ### コンパイル
@@ -232,7 +239,7 @@ java EvaluateDoubleNum
 <br>
 
 ## 課題6 2科目の点数から評価を決める
-英語、数学の2科目の点数（各100点満点）によってSからCまでの4段階評価を決定するプログラムを作成してください。点数はコマンドライン引数によって入力されるものとし、評価の基準は以下の通りとします。<br>
+&ensp;英語、数学の2科目の点数（各100点満点）によってSからCまでの4段階評価を決定するプログラムを作成してください。点数はコマンドライン引数によって入力されるものとし、評価の基準は以下の通りとします。<br>
 ```
 S -> 合計点が180点以上かつ両科目90点以上
 A -> 合計点が160点以上179点以下 または 合計点が180点以上だがいずれかの科目が89点以下
@@ -257,6 +264,8 @@ java EvaluateScore 85 85
 java EvaluateScore 59 60
 評価は Cです.
 ```
+---
+<br>
 
 ## 解答例
 ### 課題1
@@ -295,4 +304,130 @@ public class CalcParity{
 ```
 
 ---
+<br>
+
 ### 課題2
+```java
+public class CalcInputs {
+    public static void main(String args[]){
+        int num1 = Integer.parseInt(args[0]);
+        String operator = args[1];
+        int num2 = Integer.parseInt(args[2]);
+        int result = 0;
+
+        if(operator.equals("+")){
+            result = num1 + num2;
+            System.out.println(num1 + " + " + num2 + " = " + result + "です.");
+        }else if(operator.equals("-")){
+            result = num1 - num2;
+            System.out.println(num1 + " - " + num2 + " = " + result + "です.");
+        }else if(operator.equals("×")){
+            result = num1 * num2;
+            System.out.println(num1 + " * " + num2 + " = " + result + "です.");
+        }else if(operator.equals("/")){
+            result = num1 / num2;
+            System.out.println(num1 + " / " + num2 + " = " + result + "です.");
+        }else{
+            System.out.println("演算子が正しくありません.");
+        }
+    }
+}
+
+```
+---
+<br>
+
+### 課題3
+```java
+public class TimesTable {
+    public static void main(String args[]){
+        //九九の表を出力する(for)
+        for(int i=1; i<=9; i++){
+            for(int j=1; j<=9; j++){
+                System.out.print(i * j);
+                System.out.print("  ");
+                if(j == 9){
+                    System.out.println();
+                }
+            }
+        }
+    }
+}
+```
+---
+<br>
+
+### 課題4
+```java
+public class DisplayDivisor {
+    public static void main(String args[]){
+        //整数nの約数の組合せ、個数を表示させる(if, for)
+        int num = Integer.parseInt(args[0]);
+
+        int divisorNum = 0;
+        for(int i=1; i<=(int)Math.sqrt(num); i++){
+            if(num % i == 0){
+                System.out.println("(" + i+ ", " + num/i + ")");
+                if(i != num/i){
+                    divisorNum += 2;
+                }else{
+                    divisorNum += 1;
+                }
+            }
+        }
+        System.out.println(num + " の約数の個数は " + divisorNum + " です.");
+    }
+}
+```
+
+---
+<br>
+
+### 課題5
+```java
+import java.util.Scanner;
+
+public class EvaluateDoubleNum {
+    public static void main(String args[]){
+        // 入力される数が18.5以上28.5未満でない ならループを抜ける
+        Scanner scanner = new Scanner(System.in);
+        while(true){
+            System.out.println("実数を入力してください");
+            double num =  Double.parseDouble(scanner.next());
+
+            if(!(num >= 18.5 && num < 28.5)){
+                System.out.println(num + " が入力されたため脱出します.");
+                break;
+            }
+        }
+
+    }
+}
+```
+
+---
+<br>
+
+### 課題6
+```java
+public class EvaluateScore {
+    public static void main(String args[]){
+        // 2科目の点数から評価を計算する
+        int math = Integer.parseInt(args[0]);
+        int english = Integer.parseInt(args[1]);
+
+        if(math + english >= 180 && math >= 90 && english >= 90){
+            System.out.println("評価は Sです.");
+        }else if((160 <= math + english && math + english <= 179) || (math + english >= 180 && (math<= 89 || english <= 89))){
+            System.out.println("評価は Aです.");
+        }else if(120 <= math + english && math + english <= 159){
+            System.out.println("評価は Bです.");
+        }else if(math + english <= 119){
+            System.out.println("評価は Cです.");
+        }else{
+            System.out.println("不正な入力です.");
+        }
+    }
+}
+
+```
