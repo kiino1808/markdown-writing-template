@@ -293,3 +293,6 @@ public class CalcParity{
 	}
 }
 ```
+
+---
+### 課題2
