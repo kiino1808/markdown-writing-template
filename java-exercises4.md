@@ -1,6 +1,48 @@
 # Java章末問題（コレクション）
 ## 課題1 Listの速度比較
-for文と拡張for文の速度比較をするプログラムを考えます。
+for文と拡張for文の速度比較をするプログラムを考えます。リストはLinkedList, ArrayListの両方で実行し、リストのサイズは1万 ~ 100万で確かめてみてください。
+
+### 比較対象
+```java
+List<Integer> list = new LinkedList<>();
+for (int i = 0; i < 100000; i++) {
+    list.add(i);
+}
+```
+<br>
+
+開始と終了は以下のようにして測定できます。
+```java
+// 開始
+long start = System.currentTimeMillis();
+
+// 終了
+long end = System.currentTimeMillis();
+
+// 時間(ms)測定
+System.out.println((end - start) + " ms");
+```
+コンパイル例
+```java
+javac -encoding UTF-8 ListSpeed.java
+```
+
+### 実行例
+
+```java
+java ListSpeed
+for文(size: 100): 0 ms
+拡張for文(size: 100): 1 ms
+for文(size: 1000): 3 ms
+拡張for文(size: 1000): 0 ms
+for文(size: 10000): 93 ms
+拡張for文(size: 10000): 2 ms
+for文(size: 100000): 7105 ms
+拡張for文(size: 100000): 3 ms
+```
+<br>
+
+---
 ## 課題2 HashMap
 コマンドライン引数で指定された食品の料金を出力するプログラムを作ってください。<br>
 食品の名前と料金は以下のように、適当に決めてください。
@@ -106,6 +148,8 @@ public class ListSpeed{
 
 }
 ```
+
+<br>
 
 ### 課題2
 ```java

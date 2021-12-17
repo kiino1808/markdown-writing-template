@@ -162,7 +162,7 @@ java BubbleSort
 
 一般にバブルソートは、実装は簡単だが遅くて非実用的という問題点があります。
 <br>
-（参考）ソートごとの速度比較の動画<br>
+（参考）ソートごとの速度比較の動画（左下がバブルソート）<br>
 [![](https://img.youtube.com/vi/ZZuD6iUe3Pc&ab_channel=ViktorBohush/0.jpg)](https://www.youtube.com/watch?v=ZZuD6iUe3Pc&ab_channel=ViktorBohush)
 
 また、検査対象が大きくなるほどバブルソートは計算にかかる時間も非常に大きくなることが知られています。
